@@ -1,15 +1,23 @@
 import { SelectCardAction } from "@utils/enums";
 
-interface SelectAction {
-  type: SelectCardAction;
-  payload: string;
+export interface SelectAction {
+  type: string;
+  payload: any;
 }
 
-interface SelectState {
+export interface SelectState {
   selected: string;
+  card_num: any;
+  card_holder: string;
+  expiration_year: Number;
+  expiration_month: Number;
+  card_cvc: Number;
 }
 
-export function selectReducer(state: SelectState, action: SelectAction) {
+export function selectReducer(
+  state: SelectState,
+  action: SelectAction
+): SelectState {
   let { type, payload } = action;
   switch (type) {
     case SelectCardAction.ADD:
@@ -18,5 +26,38 @@ export function selectReducer(state: SelectState, action: SelectAction) {
         ...state,
         selected: payload,
       };
+    case SelectCardAction.CARDNUMSELECTED:
+      localStorage.setItem("CARDHOLDETRSELECTED", payload);
+      return {
+        ...state,
+        card_num: payload,
+      };
+    case SelectCardAction.CARDHOLDETRSELECTED:
+      localStorage.setItem("CARDHOLDETRSELECTED", payload);
+      return {
+        ...state,
+        card_holder: payload,
+      };
+    case SelectCardAction.EXPIRATIONDATE_YEAR:
+      localStorage.setItem("EXPIRATIONDATE_YEAR", payload);
+      return {
+        ...state,
+        expiration_year: payload,
+      };
+    case SelectCardAction.EXPIRATIONDATE_MONTH:
+      localStorage.setItem("EXPIRATIONDATE_MONTH", payload);
+      return {
+        ...state,
+        expiration_month: payload,
+      };
+    case SelectCardAction.CARDCVCSELECTED:
+      localStorage.setItem("CARDCVCSELECTED", payload);
+      return {
+        ...state,
+        card_cvc: payload,
+      };
+    default:
+      break;
   }
+  return state;
 }

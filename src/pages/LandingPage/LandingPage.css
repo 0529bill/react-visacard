@@ -3,4 +3,24 @@
 }
 .landingpage_left {
   background-color: aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landingpage_title1 {
+  font-size: 5vw;
+  font-weight: 900;
+  background-color: #000;
+  color: #fff;
+  display: block;
+  padding: 0.5em;
+}
+
+.landingpage_selectbtn {
+  margin: 20px;
+}
+
+.landingpage_startbtn {
+  margin: 20px;
 }

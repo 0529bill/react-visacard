@@ -1,10 +1,12 @@
 import React, { Dispatch } from "react";
 import { Modal, Button, Card, Row } from "react-bootstrap";
 import ModalCard from "@gadget/ModalCard";
+import { SelectAction } from "@utils/reducers";
+
 export interface ModalProp {
   show: boolean;
   onHide: () => void;
-  onSelect: Dispatch<React.SetStateAction<string | null>>;
+  onSelect: Dispatch<SelectAction>;
   setSelectTarget?: Dispatch<React.SetStateAction<boolean>>;
 }
 

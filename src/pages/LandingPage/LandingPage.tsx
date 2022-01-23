@@ -1,27 +1,39 @@
-import React, { useReducer, useState } from "react";
+import React, { Dispatch, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import VerticalModal from "@gadget/VerticalModal";
-import { SelectCardAction } from "@utils/enums";
+import { SelectAction } from "@utils/reducers";
+// import { SelectState } from "@utils/reducers";
+// import { selectReducer } from "@utils/reducers";
 
 import "./LandingPage.css";
 
-function LandingPage() {
+interface landingPageProps {
+  dispatch: Dispatch<SelectAction>;
+}
+
+function LandingPage(props: landingPageProps) {
+  // const initailSelectState: SelectState = {
+  //   selected: "",
+  // };
+  let { dispatch } = props;
   let navigate = useNavigate();
   let [modalShow, setmodalShow] = useState<boolean>(false);
   let [selectTarget, setSelectTarget] = useState<string | null>(null);
-  // let [state, dispatch] = useReducer(selectReducer);
+  // let [state, dispatch] = useReducer(selectReducer, initailSelectState);
   console.log("modalShow", modalShow);
   return (
     <>
       <Row className="landingpage_row">
         <Col className="landingpage_left">
-          <div className="landingpage_title">Welcome to react-card</div>
-          <div className="landingpage_selectbtn">
-            <button onClick={() => setmodalShow(true)}>Select</button>
-          </div>
-          <div className="landingpage_startbtn">
-            <button onClick={() => navigate("cardPage")}>Start</button>
+          <div className="landingpage_leftConatiner">
+            <div className="landingpage_title1">react-card</div>
+            <div className="landingpage_selectbtn">
+              <button onClick={() => setmodalShow(true)}>Select</button>
+            </div>
+            <div className="landingpage_startbtn">
+              <button onClick={() => navigate("cardPage")}>Start</button>
+            </div>
           </div>
         </Col>
         <Col>
@@ -31,7 +43,7 @@ function LandingPage() {
       <VerticalModal
         show={modalShow}
         onHide={() => setmodalShow(false)}
-        onSelect={setSelectTarget}
+        onSelect={dispatch}
       />
     </>
   );

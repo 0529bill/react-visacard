@@ -1,11 +1,13 @@
 import React, { Dispatch } from "react";
 import { Card, Button } from "react-bootstrap";
-import { ModalProp } from "@gadget/VerticalModal";
+import { SelectAction } from "@utils/reducers";
+import { SelectCardAction } from "@utils/enums";
 
 interface CardProps {
   cardName: string;
   cardId: string;
-  onSelectCard: Dispatch<React.SetStateAction<string | null>>;
+  //   onSelectCard: Dispatch<React.SetStateAction<string | null>>;
+  onSelectCard: Dispatch<SelectAction>;
   setSelectTarget?: () => { value: string };
 }
 
@@ -21,7 +23,12 @@ function ModalCard(props: CardProps) {
         </Card.Text>
         <Button
           variant="primary"
-          onClick={() => props.onSelectCard(props.cardId)}
+          onClick={() =>
+            props.onSelectCard({
+              type: SelectCardAction.ADD,
+              payload: props.cardId,
+            })
+          }
         >
           Add Card
         </Button>
