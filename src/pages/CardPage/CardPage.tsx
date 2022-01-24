@@ -35,7 +35,7 @@ function CardPage(props: CardPageState) {
   return (
     <>
       <div className="cardpage_outerContainer">
-        <VisaPage />
+        <VisaPage state={props.state} />
         <div className="cardpage_container">
           <Form>
             <Form.Group className="mb-3" controlId="floatingInput">

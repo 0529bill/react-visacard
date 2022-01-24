@@ -11,7 +11,7 @@
   height: 100%;
   box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
   border-radius: 15px;
-  /* filter: brightness(70%) contrast(90%) blur(2px); */
+  object-fit: cover;
 }
 
 .visapage_visaIcon {
@@ -33,6 +33,14 @@
   font-size: 25px;
   position: absolute;
   left: 30px;
-  bottom: 50px;
+  bottom: 70px;
   width: 100%;
+}
+
+.visapage_cardHolder {
+  position: absolute;
+  top: 140px;
+  color: white;
+  left: 15px;
+  font-size: 18px;
 }
