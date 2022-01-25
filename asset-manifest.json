@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-card/static/css/main.a0af2607.css",
-    "main.js": "/react-card/static/js/main.be791c5d.js",
+    "main.js": "/react-card/static/js/main.64189c27.js",
     "static/media/visa_background.jpeg": "/react-card/static/media/visa_background.f8898071a91389ac9c23.jpeg",
     "static/media/visa_cvc.png": "/react-card/static/media/visa_cvc.d52e89965a210a365984.png",
     "index.html": "/react-card/index.html",
     "main.a0af2607.css.map": "/react-card/static/css/main.a0af2607.css.map",
-    "main.be791c5d.js.map": "/react-card/static/js/main.be791c5d.js.map"
+    "main.64189c27.js.map": "/react-card/static/js/main.64189c27.js.map"
   },
   "entrypoints": [
     "static/css/main.a0af2607.css",
-    "static/js/main.be791c5d.js"
+    "static/js/main.64189c27.js"
   ]
 }
