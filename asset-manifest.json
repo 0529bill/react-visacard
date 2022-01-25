@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-visacard/static/css/main.a0af2607.css",
-    "main.js": "/react-visacard/static/js/main.a231348f.js",
-    "static/media/visa_background.jpeg": "/react-visacard/static/media/visa_background.f8898071a91389ac9c23.jpeg",
-    "static/media/visa_cvc.png": "/react-visacard/static/media/visa_cvc.d52e89965a210a365984.png",
-    "index.html": "/react-visacard/index.html",
-    "main.a0af2607.css.map": "/react-visacard/static/css/main.a0af2607.css.map",
-    "main.a231348f.js.map": "/react-visacard/static/js/main.a231348f.js.map"
+    "main.css": "/react-card/static/css/main.a0af2607.css",
+    "main.js": "/react-card/static/js/main.8b104c02.js",
+    "static/media/visa_background.jpeg": "/react-card/static/media/visa_background.f8898071a91389ac9c23.jpeg",
+    "static/media/visa_cvc.png": "/react-card/static/media/visa_cvc.d52e89965a210a365984.png",
+    "index.html": "/react-card/index.html",
+    "main.a0af2607.css.map": "/react-card/static/css/main.a0af2607.css.map",
+    "main.8b104c02.js.map": "/react-card/static/js/main.8b104c02.js.map"
   },
   "entrypoints": [
     "static/css/main.a0af2607.css",
-    "static/js/main.a231348f.js"
+    "static/js/main.8b104c02.js"
   ]
 }
