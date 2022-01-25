@@ -8,24 +8,25 @@ import VisaPage from "@pages/VisaPage/VisaPage";
 import "./CardPage.css";
 
 interface CardPageState {
-  name: string;
   dispatch: Dispatch<SelectAction>;
   state: SelectState;
+  cardSide: boolean;
+  setCardSide: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const month: Array<string> = [
-  "January",
-  "February",
-  "March",
-  "April",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
   "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 function CardPage(props: CardPageState) {
@@ -35,20 +36,30 @@ function CardPage(props: CardPageState) {
   return (
     <>
       <div className="cardpage_outerContainer">
-        <VisaPage state={props.state} />
+        <VisaPage
+          state={props.state}
+          cardSide={props.cardSide}
+          setCardSide={props.setCardSide}
+        />
         <div className="cardpage_container">
-          <Form>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log("formSubmit", e);
+            }}
+          >
             <Form.Group className="mb-3" controlId="floatingInput">
               <Form.Label>Card Number</Form.Label>
               <Form.Control
                 required
-                value={props.state.card_num}
-                onChange={(e) =>
+                maxLength={16}
+                onChange={(e) => {
+                  console.log("cardNum", e.target.value);
                   props.dispatch({
                     type: SelectCardAction.CARDNUMSELECTED,
                     payload: e.target.value,
-                  })
-                }
+                  });
+                }}
               ></Form.Control>
             </Form.Group>
 
@@ -56,6 +67,8 @@ function CardPage(props: CardPageState) {
               <Form.Label>Card Holder</Form.Label>
               <Form.Control
                 required
+                autoComplete="off"
+                maxLength={16}
                 onChange={(e) =>
                   props.dispatch({
                     type: SelectCardAction.CARDHOLDETRSELECTED,
@@ -68,10 +81,16 @@ function CardPage(props: CardPageState) {
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label>Expiration Date</Form.Label>
-                <Form.Select required defaultValue="Month">
-                  {/* <option disabled key="Month">
-                    Month...
-                  </option> */}
+                <Form.Select
+                  required
+                  defaultValue="Month"
+                  onChange={(e) =>
+                    props.dispatch({
+                      type: SelectCardAction.EXPIRATIONDATE_MONTH,
+                      payload: e.target.value,
+                    })
+                  }
+                >
                   {month.map((value, index) => (
                     <option key={index}>{value}</option>
                   ))}
@@ -101,19 +120,26 @@ function CardPage(props: CardPageState) {
                 <Form.Label>CVC</Form.Label>
                 <Form.Control
                   required
-                  onChange={(e) =>
+                  maxLength={3}
+                  onChange={(e) => {
+                    console.log(e);
+                    if (e.target.value.length == 1 && props.cardSide == true) {
+                      props.setCardSide(false);
+                    } else if (e.target.value == "") {
+                      props.setCardSide(true);
+                    }
                     props.dispatch({
                       type: SelectCardAction.CARDCVCSELECTED,
                       payload: e.target.value,
-                    })
-                  }
+                    });
+                  }}
                 />
               </Form.Group>
             </Row>
 
-            <Button variant="primary" type="submit">
+            <button type="submit" className="cardpage_submitBtn">
               Submit
-            </Button>
+            </button>
           </Form>
           <button onClick={() => navigate("../react-card")}>back</button>
         </div>

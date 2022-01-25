@@ -3,14 +3,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
+  background-color: #c0c0c0;
   position: relative;
   left: 0;
 }
 
 .cardpage_container {
-  border: 3px solid red;
+  border: 3px solid black;
   background-color: white;
   padding: 30px;
   padding-top: 200px;
+}
+
+.cardpage_submitBtn {
+  margin-bottom: 10px;
 }

@@ -19,7 +19,7 @@ function App() {
     card_cvc: 0,
   };
 
-  let [name, setName] = useState("hi");
+  let [cardSide, setCardSide] = useState<boolean>(true);
   let [state, dispatch] = useReducer(selectReducer, initailSelectState);
   console.log("APP_STATE", state);
   return (
@@ -31,7 +31,14 @@ function App() {
         />
         <Route
           path="/react-card/cardPage"
-          element={<CardPage name={name} dispatch={dispatch} state={state} />}
+          element={
+            <CardPage
+              dispatch={dispatch}
+              state={state}
+              cardSide={cardSide}
+              setCardSide={setCardSide}
+            />
+          }
         />
       </Routes>
     </Container>

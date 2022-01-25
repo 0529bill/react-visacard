@@ -27,6 +27,9 @@ export function selectReducer(
         selected: payload,
       };
     case SelectCardAction.CARDNUMSELECTED:
+      //   if (payload.length !== 16) {
+      //     alert("card number must be 16 digit numbers");
+      //   }
       localStorage.setItem("CARDHOLDETRSELECTED", payload);
       return {
         ...state,

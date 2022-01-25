@@ -3,8 +3,30 @@
   width: 300px;
   height: 200px;
   top: 5%;
-  background-color: blueviolet;
+  transition: transform 2s;
+  transform: perspective(500px);
+  transform-style: preserve-3d;
 }
+
+.visapage_container.flipped {
+  transform: rotateY(180deg);
+}
+
+.visapageDiv {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  top: 5%;
+}
+
+/* visapage front */
+
+/* .visapage_front {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
+  border-radius: 15px;
+} */
 
 .visapage_background {
   width: 100%;
@@ -30,11 +52,21 @@
 
 .visapage_cardNum {
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   position: absolute;
   left: 30px;
   bottom: 70px;
   width: 100%;
+}
+
+.visapage_cardNum span {
+  width: 20px;
+  font-size: 20px;
+  position: relative;
+}
+
+.visapage_cardNum_space {
+  width: 30px;
 }
 
 .visapage_cardHolder {
@@ -44,3 +76,104 @@
   left: 15px;
   font-size: 18px;
 }
+
+.visapage_cardHolder_title {
+  opacity: 0.7;
+  color: #fff;
+  font-size: 13px;
+}
+
+.visapage_expireDate {
+  position: absolute;
+  top: 140px;
+  color: white;
+  right: 15px;
+  font-size: 18px;
+}
+
+.visapage_expireDate_title {
+  opacity: 0.7;
+  color: #fff;
+  font-size: 13px;
+}
+
+/* visapage back */
+
+.visapage_back {
+  transform: rotateY(180deg) translateZ(5px);
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
+  border-radius: 15px;
+}
+
+.visapage_visaIcon_back {
+  position: absolute;
+  top: 160px;
+  right: 10px;
+  width: 70px;
+}
+
+.visapage_blackStrip {
+  top: 25px;
+  width: 100%;
+  background-color: black;
+  height: 45px;
+  position: absolute;
+}
+
+.visapage_whiteStrip {
+  top: 120px;
+  width: 80%;
+  background-color: white;
+  height: 25px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.visapage_cvcNum {
+  top: 80px;
+  right: 10px;
+  font-size: 20px;
+  height: 25px;
+  position: absolute;
+  width: 45px;
+  text-align: center;
+}
+
+.visapage_cvcNum_title {
+  color: white;
+  border: 3px solid wheat;
+}
+
+.visapage_visaCvc_back {
+  position: absolute;
+  top: 158px;
+  right: 90px;
+  width: 45px;
+}
+
+/* .slide-up-enter {
+  opacity: 0;
+  transform: translateY(15px);
+}
+.slide-up-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 0.1s;
+}
+.slide-up-exit {
+  opacity: 1;
+  position: absolute;
+}
+.slide-up-exit-active {
+  opacity: 0;
+  transform: translateY(-15px);
+  pointer-events: none;
+}
+
+.slide-up-enter-active,
+.slide-up-exit-active {
+  transition: all 0.25s ease-in-out;
+} */
