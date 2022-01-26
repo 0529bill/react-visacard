@@ -25,10 +25,10 @@ function App() {
   return (
     <Container fluid className="App">
       <Switch>
-        <Route path="/react-card" exact>
+        <Route path="/" exact>
           <LandingPage dispatch={dispatch} />
         </Route>
-        <Route path="/react-card/cardPage">
+        <Route path="/cardPage">
           <CardPage
             dispatch={dispatch}
             state={state}
