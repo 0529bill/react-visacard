@@ -30,8 +30,6 @@ const month: Array<string> = [
 ];
 
 function CardPage(props: CardPageState) {
-  console.log("CardPage", props);
-  console.log("props.state", props.state);
   let history = useHistory();
   return (
     <>
@@ -45,7 +43,6 @@ function CardPage(props: CardPageState) {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              console.log("formSubmit", e);
             }}
           >
             <Form.Group className="mb-3" controlId="floatingInput">
@@ -54,7 +51,6 @@ function CardPage(props: CardPageState) {
                 required
                 maxLength={16}
                 onChange={(e) => {
-                  console.log("cardNum", e.target.value);
                   props.dispatch({
                     type: SelectCardAction.CARDNUMSELECTED,
                     payload: e.target.value,
@@ -122,7 +118,6 @@ function CardPage(props: CardPageState) {
                   required
                   maxLength={3}
                   onChange={(e) => {
-                    console.log(e);
                     if (e.target.value.length == 1 && props.cardSide == true) {
                       props.setCardSide(false);
                     } else if (e.target.value == "") {
@@ -141,7 +136,7 @@ function CardPage(props: CardPageState) {
               Submit
             </button>
           </Form>
-          <button onClick={() => history.push("../react-card")}>back</button>
+          <button onClick={() => history.push("../")}>back</button>
         </div>
       </div>
     </>

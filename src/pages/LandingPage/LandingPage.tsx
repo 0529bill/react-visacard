@@ -16,7 +16,6 @@ function LandingPage(props: landingPageProps) {
   let { dispatch } = props;
   let history = useHistory();
   let [modalShow, setmodalShow] = useState<boolean>(false);
-  console.log("modalShow", modalShow);
   return (
     <>
       <Row className="landingpage_row">
@@ -30,9 +29,7 @@ function LandingPage(props: landingPageProps) {
               </button>
             </div>
             <div className="landingpage_startbtn">
-              <button onClick={() => history.push("/react-card/cardPage")}>
-                Start
-              </button>
+              <button onClick={() => history.push("/cardPage")}>Start</button>
             </div>
           </div>
         </Col>

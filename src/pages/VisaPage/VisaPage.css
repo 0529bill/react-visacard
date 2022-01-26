@@ -153,27 +153,3 @@
   right: 90px;
   width: 45px;
 }
-
-/* .slide-up-enter {
-  opacity: 0;
-  transform: translateY(15px);
-}
-.slide-up-enter-active {
-  opacity: 1;
-  transform: translateY(0px);
-  transition-delay: 0.1s;
-}
-.slide-up-exit {
-  opacity: 1;
-  position: absolute;
-}
-.slide-up-exit-active {
-  opacity: 0;
-  transform: translateY(-15px);
-  pointer-events: none;
-}
-
-.slide-up-enter-active,
-.slide-up-exit-active {
-  transition: all 0.25s ease-in-out;
-} */

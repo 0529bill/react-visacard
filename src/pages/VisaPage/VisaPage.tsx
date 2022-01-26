@@ -14,8 +14,6 @@ interface VisaPageState {
 }
 
 function VisaPage(props: VisaPageState) {
-  console.log("visaPage_-CardSide", props.cardSide);
-  console.log("VPS", props.state);
   let visaCardNum: Array<JSX.Element | string> = [];
 
   Array.from({ length: 16 }).forEach((_, index) => {
@@ -31,31 +29,6 @@ function VisaPage(props: VisaPageState) {
     }
   });
 
-  //   Array.from({ length: 19 }).forEach((_, index) => {
-  //     if ([4, 9, 14].includes(index)) {
-  //       visaCardNum.push(<span className="visapage_cardNum_space">&nbsp; </span>);
-  //     } else {
-  //       console.log("indexTest", index);
-  //       console.log("stateTest", props.state.card_num.length);
-  //       visaCardNum.push(
-  //         <SwitchTransition>
-  //           <CSSTransition
-  //             classNames="slide-up"
-  //             addEndListener={(node, done) =>
-  //               node.addEventListener("transitionend", done, false)
-  //             }
-  //           >
-  //             <span>
-  //               {index < props.state.card_num.length
-  //                 ? props.state.card_num[index]
-  //                 : "#"}
-  //             </span>
-  //           </CSSTransition>
-  //         </SwitchTransition>
-  //       );
-  //     }
-  //   });
-  console.log("VCN", visaCardNum);
   return (
     <>
       <div

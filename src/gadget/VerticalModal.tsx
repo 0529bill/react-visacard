@@ -11,7 +11,6 @@ export interface ModalProp {
 }
 
 function VerticalModal(props: ModalProp) {
-  console.log("props", props);
   return window.location.pathname !== "/react-card" ? (
     <>
       <div>嗨</div>

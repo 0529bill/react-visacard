@@ -21,7 +21,6 @@ function App() {
 
   let [cardSide, setCardSide] = useState<boolean>(true);
   let [state, dispatch] = useReducer(selectReducer, initailSelectState);
-  console.log("APP_STATE", state);
   return (
     <Container fluid className="App">
       <Switch>
