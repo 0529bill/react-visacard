@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { selectReducer } from "@utils/reducers";
 import { SelectState } from "@utils/reducers";
@@ -24,23 +24,19 @@ function App() {
   console.log("APP_STATE", state);
   return (
     <Container fluid className="App">
-      <Routes>
-        <Route
-          path="/react-card"
-          element={<LandingPage dispatch={dispatch} />}
-        />
-        <Route
-          path="/react-card/cardPage"
-          element={
-            <CardPage
-              dispatch={dispatch}
-              state={state}
-              cardSide={cardSide}
-              setCardSide={setCardSide}
-            />
-          }
-        />
-      </Routes>
+      <Switch>
+        <Route path="/react-card" exact>
+          <LandingPage dispatch={dispatch} />
+        </Route>
+        <Route path="/react-card/cardPage">
+          <CardPage
+            dispatch={dispatch}
+            state={state}
+            cardSide={cardSide}
+            setCardSide={setCardSide}
+          />
+        </Route>
+      </Switch>
     </Container>
   );
 }

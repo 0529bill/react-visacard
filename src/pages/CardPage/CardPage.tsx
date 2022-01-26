@@ -1,5 +1,5 @@
 import React, { Dispatch } from "react";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { SelectAction } from "@utils/reducers";
 import { SelectCardAction } from "@utils/enums";
@@ -32,7 +32,7 @@ const month: Array<string> = [
 function CardPage(props: CardPageState) {
   console.log("CardPage", props);
   console.log("props.state", props.state);
-  let navigate = useNavigate();
+  let history = useHistory();
   return (
     <>
       <div className="cardpage_outerContainer">
@@ -141,7 +141,7 @@ function CardPage(props: CardPageState) {
               Submit
             </button>
           </Form>
-          <button onClick={() => navigate("../react-card")}>back</button>
+          <button onClick={() => history.push("../react-card")}>back</button>
         </div>
       </div>
     </>

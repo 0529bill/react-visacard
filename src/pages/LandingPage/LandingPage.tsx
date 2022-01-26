@@ -1,5 +1,5 @@
 import React, { Dispatch, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import VerticalModal from "@gadget/VerticalModal";
 import { SelectAction } from "@utils/reducers";
@@ -14,7 +14,7 @@ interface landingPageProps {
 
 function LandingPage(props: landingPageProps) {
   let { dispatch } = props;
-  let navigate = useNavigate();
+  let history = useHistory();
   let [modalShow, setmodalShow] = useState<boolean>(false);
   console.log("modalShow", modalShow);
   return (
@@ -30,7 +30,9 @@ function LandingPage(props: landingPageProps) {
               </button>
             </div>
             <div className="landingpage_startbtn">
-              <button onClick={() => navigate("cardPage")}>Start</button>
+              <button onClick={() => history.push("/react-card/cardPage")}>
+                Start
+              </button>
             </div>
           </div>
         </Col>
