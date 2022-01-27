@@ -49,8 +49,10 @@ function CardPage(props: CardPageState) {
               <Form.Label>Card Number</Form.Label>
               <Form.Control
                 required
+                autoComplete="off"
                 maxLength={16}
                 onChange={(e) => {
+                  props.setCardSide(true);
                   props.dispatch({
                     type: SelectCardAction.CARDNUMSELECTED,
                     payload: e.target.value,
@@ -61,17 +63,38 @@ function CardPage(props: CardPageState) {
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
               <Form.Label>Card Holder</Form.Label>
-              <Form.Control
-                required
-                autoComplete="off"
-                maxLength={16}
-                onChange={(e) =>
-                  props.dispatch({
-                    type: SelectCardAction.CARDHOLDETRSELECTED,
-                    payload: e.target.value,
-                  })
-                }
-              />
+              <Row>
+                <Col>
+                  <Form.Control
+                    required
+                    placeholder="First Name"
+                    autoComplete="off"
+                    maxLength={8}
+                    onChange={(e) => {
+                      props.setCardSide(true);
+                      props.dispatch({
+                        type: SelectCardAction.CARDHOLDERFIRST,
+                        payload: e.target.value,
+                      });
+                    }}
+                  />
+                </Col>
+                <Col>
+                  <Form.Control
+                    required
+                    placeholder="Last Name"
+                    autoComplete="off"
+                    maxLength={8}
+                    onChange={(e) => {
+                      props.setCardSide(true);
+                      props.dispatch({
+                        type: SelectCardAction.CARDHOLDERSECOND,
+                        payload: e.target.value,
+                      });
+                    }}
+                  />
+                </Col>
+              </Row>
             </Form.Group>
 
             <Row className="mb-3">
@@ -79,14 +102,19 @@ function CardPage(props: CardPageState) {
                 <Form.Label>Expiration Date</Form.Label>
                 <Form.Select
                   required
+                  autoComplete="off"
                   defaultValue="Month"
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    props.setCardSide(true);
                     props.dispatch({
                       type: SelectCardAction.EXPIRATIONDATE_MONTH,
                       payload: e.target.value,
-                    })
-                  }
+                    });
+                  }}
                 >
+                  <option key="Year" hidden>
+                    Month...
+                  </option>
                   {month.map((value, index) => (
                     <option key={index}>{value}</option>
                   ))}
@@ -97,15 +125,19 @@ function CardPage(props: CardPageState) {
                 <Form.Label>Year</Form.Label>
                 <Form.Select
                   required
+                  autoComplete="off"
                   defaultValue="Choose..."
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    props.setCardSide(true);
                     props.dispatch({
                       type: SelectCardAction.EXPIRATIONDATE_YEAR,
                       payload: e.target.value,
-                    })
-                  }
+                    });
+                  }}
                 >
-                  <option key="Year">Year...</option>
+                  <option key="Year" hidden>
+                    Year...
+                  </option>
                   {Array.from({ length: 15 }).map((_, index) => (
                     <option key={index + 2022 + ""}>{2022 + index}</option>
                   ))}
@@ -116,6 +148,7 @@ function CardPage(props: CardPageState) {
                 <Form.Label>CVC</Form.Label>
                 <Form.Control
                   required
+                  autoComplete="off"
                   maxLength={3}
                   onChange={(e) => {
                     if (e.target.value.length == 1 && props.cardSide == true) {
@@ -136,7 +169,12 @@ function CardPage(props: CardPageState) {
               Submit
             </button>
           </Form>
-          <button onClick={() => history.push("../")}>back</button>
+          <button
+            className="cardpage_backBtn"
+            onClick={() => history.push("../")}
+          >
+            back
+          </button>
         </div>
       </div>
     </>

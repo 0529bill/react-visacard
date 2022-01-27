@@ -16,5 +16,14 @@
 }
 
 .cardpage_submitBtn {
+  width: 100%;
+  min-height: 40px;
   margin-bottom: 10px;
+  margin-top: 30px;
+  background-color: coral;
+  color: white;
+}
+
+.cardpage_backBtn {
+  float: right;
 }

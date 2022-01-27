@@ -51,13 +51,17 @@ function VisaPage(props: VisaPageState) {
           <div className="visapage_cardHolder">
             <div className="visapage_cardHolder_title">Card Holder</div>
             <div>
-              {props.state.card_holder ? props.state.card_holder : "Full Name"}
+              {props.state.card_holder_first || props.state.card_holder_second
+                ? props.state.card_holder_first +
+                  " " +
+                  props.state.card_holder_second
+                : "Full Name"}
             </div>
           </div>
           <div className="visapage_expireDate">
             <div className="visapage_expireDate_title">Expires</div>
             <div>
-              {props.state.expiration_month && props.state.expiration_year
+              {props.state.expiration_month || props.state.expiration_year
                 ? `${props.state.expiration_month}/${props.state.expiration_year}`
                 : "MM/YY"}
             </div>

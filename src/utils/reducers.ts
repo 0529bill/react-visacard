@@ -8,9 +8,10 @@ export interface SelectAction {
 export interface SelectState {
   selected: string;
   card_num: any;
-  card_holder: string;
-  expiration_year: Number;
-  expiration_month: Number;
+  card_holder_first: string;
+  card_holder_second: string;
+  expiration_year: Number | string;
+  expiration_month: Number | string;
   card_cvc: Number;
 }
 
@@ -30,16 +31,22 @@ export function selectReducer(
       //   if (payload.length !== 16) {
       //     alert("card number must be 16 digit numbers");
       //   }
-      localStorage.setItem("CARDHOLDETRSELECTED", payload);
+      localStorage.setItem("CARDNUMSELECTED", payload);
       return {
         ...state,
         card_num: payload,
       };
-    case SelectCardAction.CARDHOLDETRSELECTED:
-      localStorage.setItem("CARDHOLDETRSELECTED", payload);
+    case SelectCardAction.CARDHOLDERFIRST:
+      localStorage.setItem("CARDHOLDERFIRST", payload);
       return {
         ...state,
-        card_holder: payload,
+        card_holder_first: payload,
+      };
+    case SelectCardAction.CARDHOLDERSECOND:
+      localStorage.setItem("CARDHOLDERSECOND", payload);
+      return {
+        ...state,
+        card_holder_second: payload,
       };
     case SelectCardAction.EXPIRATIONDATE_YEAR:
       localStorage.setItem("EXPIRATIONDATE_YEAR", payload);

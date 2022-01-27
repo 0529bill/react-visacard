@@ -13,9 +13,10 @@ function App() {
   const initailSelectState: SelectState = {
     selected: "",
     card_num: 0,
-    card_holder: "",
-    expiration_year: 0,
-    expiration_month: 0,
+    card_holder_first: "",
+    card_holder_second: "",
+    expiration_year: "YY",
+    expiration_month: "MM",
     card_cvc: 0,
   };
 
