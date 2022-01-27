@@ -23,7 +23,6 @@ function LandingPage(props: landingPageProps) {
           <div className="landingpage_leftConatiner">
             <div className="landingpage_title1">react-card</div>
             <div className="landingpage_selectbtn">
-              {/* <button onClick={() => setmodalShow(true)}>Select</button> */}
               <button onClick={() => alert("under construction")}>
                 Select
               </button>
