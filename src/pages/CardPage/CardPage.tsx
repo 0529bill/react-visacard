@@ -2,9 +2,10 @@ import React, { Dispatch } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { SelectAction } from "@utils/reducers";
-import { SelectCardAction } from "@utils/enums";
+import { SelectCardAction, CardActionValidate } from "@utils/enums";
 import { SelectState } from "@utils/reducers";
 import VisaPage from "@pages/VisaPage/VisaPage";
+import ErrorMessage from "@gadget/ErrorMessage/ErrorMessage";
 import "./CardPage.css";
 
 interface CardPageState {
@@ -31,6 +32,7 @@ const month: Array<string> = [
 
 function CardPage(props: CardPageState) {
   let history = useHistory();
+  console.log("props_state_cardPageState", props.state);
   return (
     <>
       <div className="cardpage_outerContainer">
@@ -43,14 +45,24 @@ function CardPage(props: CardPageState) {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
+              props.dispatch({
+                type: CardActionValidate.CARDVALIDATE,
+              });
             }}
           >
             <Form.Group className="mb-3" controlId="floatingInput">
               <Form.Label>Card Number</Form.Label>
               <Form.Control
-                required
+                type="number"
                 autoComplete="off"
                 maxLength={16}
+                onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  (e.target.value = e.target.value.slice(0, 16))
+                }
+                // onKeyPress={(e) => (e.target.value.length == 16 ? false : null)}
+                onKeyDown={(e) => [
+                  ["-", "+", "e"].includes(e.key) ? e.preventDefault() : null,
+                ]}
                 onChange={(e) => {
                   props.setCardSide(true);
                   props.dispatch({
@@ -58,7 +70,8 @@ function CardPage(props: CardPageState) {
                     payload: e.target.value,
                   });
                 }}
-              ></Form.Control>
+              />
+              <ErrorMessage id="card_num" data={props.state.error} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
@@ -66,7 +79,6 @@ function CardPage(props: CardPageState) {
               <Row>
                 <Col>
                   <Form.Control
-                    required
                     placeholder="First Name"
                     autoComplete="off"
                     maxLength={8}
@@ -78,10 +90,13 @@ function CardPage(props: CardPageState) {
                       });
                     }}
                   />
+                  <ErrorMessage
+                    id="card_holder_first"
+                    data={props.state.error}
+                  />
                 </Col>
                 <Col>
                   <Form.Control
-                    required
                     placeholder="Last Name"
                     autoComplete="off"
                     maxLength={8}
@@ -93,6 +108,10 @@ function CardPage(props: CardPageState) {
                       });
                     }}
                   />
+                  <ErrorMessage
+                    id="card_holder_second"
+                    data={props.state.error}
+                  />
                 </Col>
               </Row>
             </Form.Group>
@@ -101,7 +120,6 @@ function CardPage(props: CardPageState) {
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label>Expiration Date</Form.Label>
                 <Form.Select
-                  required
                   autoComplete="off"
                   defaultValue="Month"
                   onChange={(e) => {
@@ -119,12 +137,12 @@ function CardPage(props: CardPageState) {
                     <option key={index}>{value}</option>
                   ))}
                 </Form.Select>
+                <ErrorMessage id="expiration_month" data={props.state.error} />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label>Year</Form.Label>
                 <Form.Select
-                  required
                   autoComplete="off"
                   defaultValue="Choose..."
                   onChange={(e) => {
@@ -142,14 +160,18 @@ function CardPage(props: CardPageState) {
                     <option key={index + 2022 + ""}>{2022 + index}</option>
                   ))}
                 </Form.Select>
+                <ErrorMessage id="expiration_year" data={props.state.error} />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label>CVC</Form.Label>
                 <Form.Control
-                  required
+                  type="number"
                   autoComplete="off"
                   maxLength={3}
+                  onKeyDown={(e) => [
+                    ["-", "+", "e"].includes(e.key) ? e.preventDefault() : null,
+                  ]}
                   onChange={(e) => {
                     if (e.target.value.length == 1 && props.cardSide == true) {
                       props.setCardSide(false);
@@ -162,6 +184,7 @@ function CardPage(props: CardPageState) {
                     });
                   }}
                 />
+                <ErrorMessage id="card_cvc" data={props.state.error} />
               </Form.Group>
             </Row>
 

@@ -50,7 +50,7 @@ function VisaPage(props: VisaPageState) {
           <div className="visapage_cardNum">{visaCardNum}</div>
           <div className="visapage_cardHolder">
             <div className="visapage_cardHolder_title">Card Holder</div>
-            <div>
+            <div className="visapage_cardHolder_text">
               {props.state.card_holder_first || props.state.card_holder_second
                 ? props.state.card_holder_first +
                   " " +

@@ -1,8 +1,8 @@
-import { SelectCardAction } from "@utils/enums";
+import { SelectCardAction, CardActionValidate } from "@utils/enums";
 
 export interface SelectAction {
   type: string;
-  payload: any;
+  payload?: any;
 }
 
 export interface SelectState {
@@ -10,9 +10,10 @@ export interface SelectState {
   card_num: any;
   card_holder_first: string;
   card_holder_second: string;
-  expiration_year: Number | string;
-  expiration_month: Number | string;
+  expiration_year: string;
+  expiration_month: string;
   card_cvc: Number;
+  error: any;
 }
 
 export function selectReducer(
@@ -20,7 +21,64 @@ export function selectReducer(
   action: SelectAction
 ): SelectState {
   let { type, payload } = action;
+  console.log("state_inside_reducer", state);
   switch (type) {
+    case CardActionValidate.CARDVALIDATE:
+      if (state.card_num.length !== 16) {
+        // return {
+        //   ...state,
+        //   error: { ...state.error, card_num: true },
+        // };
+        state.error["card_num"] = true;
+      } else if (state.card_num.length === 16) {
+        state.error["card_num"] = false;
+      }
+
+      if (state.card_holder_first.length == 0) {
+        state.error["card_holder_first"] = true;
+      } else if (state.card_holder_first.length !== 0) {
+        state.error["card_holder_first"] = false;
+      }
+
+      if (state.card_holder_second.length == 0) {
+        state.error["card_holder_second"] = true;
+      } else if (state.card_holder_second.length !== 0) {
+        state.error["card_holder_second"] = false;
+      }
+      console.log("month", state.expiration_month);
+      console.log("equal", state.expiration_month == "MM");
+      if (state.expiration_month == "MM") {
+        state.error["expiration_month"] = true;
+      } else if (state.expiration_month.length !== 0) {
+        state.error["expiration_month"] = false;
+      }
+
+      if (state.expiration_year == "YY") {
+        state.error["expiration_year"] = true;
+      } else if (state.expiration_year.length !== 0) {
+        state.error["expiration_year"] = false;
+      }
+
+      if (state.card_cvc == 0) {
+        state.error["card_cvc"] = true;
+      } else if (state.expiration_year.length !== 0) {
+        state.error["card_cvc"] = false;
+      }
+
+      //   [state.card_holder_first, state.card_holder_second].forEach((t) => {
+      //     console.log("t", t);
+      //     if (t.length == 0) {
+      //       console.log("erwerwer");
+      //       return {
+      //         ...state,
+      //         error: { ...state.error, name: true },
+      //       };
+      //     } else if (t.length !== 0) {
+      //       state.error[`${t}`] = false;
+      //     }
+      //   });
+
+      return { ...state };
     case SelectCardAction.ADD:
       localStorage.setItem("selected", payload);
       return {
@@ -28,9 +86,6 @@ export function selectReducer(
         selected: payload,
       };
     case SelectCardAction.CARDNUMSELECTED:
-      //   if (payload.length !== 16) {
-      //     alert("card number must be 16 digit numbers");
-      //   }
       localStorage.setItem("CARDNUMSELECTED", payload);
       return {
         ...state,
@@ -67,7 +122,7 @@ export function selectReducer(
         card_cvc: payload,
       };
     default:
-      break;
+      return state;
   }
   return state;
 }

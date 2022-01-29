@@ -7,3 +7,7 @@ export enum SelectCardAction {
   EXPIRATIONDATE_MONTH = "EXPIRATIONDATE_MONTH",
   CARDCVCSELECTED = "CARDCVCSELECTED",
 }
+
+export enum CardActionValidate {
+  CARDVALIDATE = "CARDVALIDATE",
+}

@@ -18,6 +18,7 @@ function App() {
     expiration_year: "YY",
     expiration_month: "MM",
     card_cvc: 0,
+    error: {},
   };
 
   let [cardSide, setCardSide] = useState<boolean>(true);
