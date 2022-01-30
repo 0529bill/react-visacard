@@ -37,7 +37,7 @@
 
 .landing_card_container.flipped {
   /* transform: rotateY(180deg); */
-  animation: rotate 15s ease-in-out infinite;
+  animation: rotate 13s ease-in-out infinite;
 }
 @keyframes rotate {
   0% {
