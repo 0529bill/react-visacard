@@ -27,7 +27,7 @@ function App() {
     <Container fluid className="App">
       <Switch>
         <Route path="/" exact>
-          <LandingPage dispatch={dispatch} />
+          <LandingPage dispatch={dispatch} state={state} />
         </Route>
         <Route path="/cardPage">
           <CardPage

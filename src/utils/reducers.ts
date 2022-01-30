@@ -21,7 +21,6 @@ export function selectReducer(
   action: SelectAction
 ): SelectState {
   let { type, payload } = action;
-  console.log("state_inside_reducer", state);
   switch (type) {
     case CardActionValidate.CARDVALIDATE:
       if (state.card_num.length !== 16) {
@@ -45,8 +44,7 @@ export function selectReducer(
       } else if (state.card_holder_second.length !== 0) {
         state.error["card_holder_second"] = false;
       }
-      console.log("month", state.expiration_month);
-      console.log("equal", state.expiration_month == "MM");
+
       if (state.expiration_month == "MM") {
         state.error["expiration_month"] = true;
       } else if (state.expiration_month.length !== 0) {

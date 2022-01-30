@@ -2,7 +2,7 @@ import React, { Dispatch, useRef } from "react";
 import visa_background from "@assets/visa_background.jpeg";
 import visa from "@assets/visa.png";
 import visa_cvc from "@assets/visa_cvc.png";
-import { SwitchTransition, CSSTransition } from "react-transition-group";
+import road_visa from "@assets/road_visa.jpeg";
 import { SelectState } from "@utils/reducers";
 
 import "./VisaPage.css";
@@ -38,7 +38,7 @@ function VisaPage(props: VisaPageState) {
         <div className="visapageDiv visapage_front ">
           <img
             className="visapage_background"
-            src={visa_background}
+            src={props.state.selected ? props.state.selected : road_visa}
             alt="visapage_background"
           />
           <div>
@@ -70,7 +70,7 @@ function VisaPage(props: VisaPageState) {
         <div className="visapageDiv visapage_back">
           <img
             className="visapage_background"
-            src={visa_background}
+            src={props.state.selected ? props.state.selected : road_visa}
             alt="visapage_background"
           />
           <div className="visapage_blackStrip" />

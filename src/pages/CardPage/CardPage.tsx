@@ -32,7 +32,6 @@ const month: Array<string> = [
 
 function CardPage(props: CardPageState) {
   let history = useHistory();
-  console.log("props_state_cardPageState", props.state);
   return (
     <>
       <div className="cardpage_outerContainer">

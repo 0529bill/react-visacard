@@ -9,28 +9,35 @@ interface CardProps {
   //   onSelectCard: Dispatch<React.SetStateAction<string | null>>;
   onSelectCard: Dispatch<SelectAction>;
   setSelectTarget?: () => { value: string };
+  onHide: () => void;
+  img: any;
+  cardContent: string;
 }
 
 function ModalCard(props: CardProps) {
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img src="holder.js/100px180" />
+    <Card
+      key={props.cardId}
+      style={{ width: "18rem", textAlign: "center", margin: "30px" }}
+    >
+      <Card.Img
+        src={props.img}
+        style={{ height: "250px", objectFit: "cover" }}
+      />
       <Card.Body>
         <Card.Title>{props.cardName}</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
+        <Card.Text>{props.cardContent}</Card.Text>
         <Button
           variant="primary"
-          onClick={() =>
+          onClick={() => {
             props.onSelectCard({
               type: SelectCardAction.ADD,
-              payload: props.cardId,
-            })
-          }
+              payload: props.img,
+            });
+            props.onHide();
+          }}
         >
-          Add Card
+          Select this background
         </Button>
       </Card.Body>
     </Card>
