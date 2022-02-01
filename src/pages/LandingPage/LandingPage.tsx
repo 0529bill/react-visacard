@@ -42,7 +42,7 @@ function LandingPage(props: landingPageProps) {
             </div>
           </Col>
           <Col style={{ height: "100vh" }}>
-            <div className={`landing_card_container flipped`}>
+            <div className="landing_card_container flipped">
               <div className="landing_card landing_front">
                 <img
                   className="landing_card_background"

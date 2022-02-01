@@ -4,6 +4,9 @@
   justify-content: center;
   align-items: center;
 }
+.landingpage_leftConatiner {
+  margin-top: 300px;
+}
 
 .landingpage_title1 {
   font-size: 5vw;
@@ -18,8 +21,18 @@
   margin: 20px;
 }
 
+.landingpage_selectbtn button {
+  width: 20vw;
+  height: 5vh;
+}
+
 .landingpage_startbtn {
   margin: 20px;
+}
+
+.landingpage_startbtn button {
+  width: 20vw;
+  height: 5vh;
 }
 
 /* landing card */
@@ -28,7 +41,7 @@
   position: absolute;
   width: 300px;
   height: 200px;
-  right: 20%;
+  right: 10%;
   top: 10%;
   transition: transform 2s;
   transform: perspective(500px);

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap");
+@import "normalize.css";
 
 .App {
   padding: 0px !important;
