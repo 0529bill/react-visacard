@@ -18,7 +18,15 @@ function App() {
     expiration_year: "YY",
     expiration_month: "MM",
     card_cvc: 0,
-    error: {},
+    error: {
+      card_num: null,
+      card_holder_first: null,
+      card_holder_second: null,
+      card_cvc: null,
+      expiration_month: null,
+      expiration_year: null,
+    },
+    download_input: "",
   };
 
   let [cardSide, setCardSide] = useState<boolean>(true);

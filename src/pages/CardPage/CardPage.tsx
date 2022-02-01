@@ -1,6 +1,6 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Col, Row, Button } from "react-bootstrap";
+import { Form, Col, Row, Button, Modal } from "react-bootstrap";
 import { SelectAction } from "@utils/reducers";
 import { SelectCardAction, CardActionValidate } from "@utils/enums";
 import { SelectState } from "@utils/reducers";
@@ -32,6 +32,18 @@ const month: Array<string> = [
 
 function CardPage(props: CardPageState) {
   let history = useHistory();
+  let [submitClick, setSubmitClick] = useState<boolean>(false);
+  let [modalOpen, setModalOpen] = useState<boolean>(false);
+  let [buttonInputChecked, setButtonInputChecked] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (Object.values(props.state.error).every((t) => t == false)) {
+      if (submitClick) {
+        setModalOpen(true);
+      }
+      // setSubmitClick(true);
+    }
+  }, [props.state]);
   return (
     <>
       <div className="cardpage_outerContainer">
@@ -39,6 +51,10 @@ function CardPage(props: CardPageState) {
           state={props.state}
           cardSide={props.cardSide}
           setCardSide={props.setCardSide}
+          submitClick={submitClick}
+          setSubmitClick={setSubmitClick}
+          buttonInputChecked={buttonInputChecked}
+          setButtonInputChecked={setButtonInputChecked}
         />
         <div className="cardpage_container">
           <Form
@@ -58,7 +74,6 @@ function CardPage(props: CardPageState) {
                 onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
                   (e.target.value = e.target.value.slice(0, 16))
                 }
-                // onKeyPress={(e) => (e.target.value.length == 16 ? false : null)}
                 onKeyDown={(e) => [
                   ["-", "+", "e"].includes(e.key) ? e.preventDefault() : null,
                 ]}
@@ -165,6 +180,9 @@ function CardPage(props: CardPageState) {
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label>CVC</Form.Label>
                 <Form.Control
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    (e.target.value = e.target.value.slice(0, 3))
+                  }
                   type="number"
                   autoComplete="off"
                   maxLength={3}
@@ -187,7 +205,11 @@ function CardPage(props: CardPageState) {
               </Form.Group>
             </Row>
 
-            <button type="submit" className="cardpage_submitBtn">
+            <button
+              type="submit"
+              className="cardpage_submitBtn"
+              onClick={() => setSubmitClick(true)}
+            >
               Submit
             </button>
           </Form>
@@ -197,6 +219,55 @@ function CardPage(props: CardPageState) {
           >
             back
           </button>
+        </div>
+        <div>
+          <Modal
+            show={modalOpen}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header>
+              <h4>Download png file</h4>
+            </Modal.Header>
+            <Modal.Body>
+              <p>Please Name your file.</p>
+              <input
+                onChange={(e) =>
+                  props.dispatch({
+                    type: SelectCardAction.DOWNLOADINPUT,
+                    payload: e.target.value,
+                  })
+                }
+              ></input>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  setModalOpen(false);
+                  setSubmitClick(false);
+                  props.dispatch({
+                    type: SelectCardAction.INITIALIZATION,
+                  });
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="dark"
+                onClick={() => {
+                  setButtonInputChecked(true);
+                  setModalOpen(false);
+                  props.dispatch({
+                    type: SelectCardAction.INITIALIZATION,
+                  });
+                }}
+              >
+                Download{" "}
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     </>

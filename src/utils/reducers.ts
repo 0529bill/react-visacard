@@ -12,8 +12,9 @@ export interface SelectState {
   card_holder_second: string;
   expiration_year: string;
   expiration_month: string;
-  card_cvc: Number;
+  card_cvc: Number | null;
   error: any;
+  download_input: string;
 }
 
 export function selectReducer(
@@ -24,15 +25,10 @@ export function selectReducer(
   switch (type) {
     case CardActionValidate.CARDVALIDATE:
       if (state.card_num.length !== 16) {
-        // return {
-        //   ...state,
-        //   error: { ...state.error, card_num: true },
-        // };
         state.error["card_num"] = true;
       } else if (state.card_num.length === 16) {
         state.error["card_num"] = false;
       }
-
       if (state.card_holder_first.length == 0) {
         state.error["card_holder_first"] = true;
       } else if (state.card_holder_first.length !== 0) {
@@ -77,6 +73,16 @@ export function selectReducer(
       //   });
 
       return { ...state };
+    case SelectCardAction.INITIALIZATION:
+      state.error["card_cvc"] = null;
+      state.error["card_holder_first"] = null;
+      state.error["card_holder_second"] = null;
+      state.error["card_num"] = null;
+      state.error["expiration_month"] = null;
+      state.error["expiration_year"] = null;
+      return {
+        ...state,
+      };
     case SelectCardAction.ADD:
       localStorage.setItem("selected", payload);
       return {
@@ -118,6 +124,12 @@ export function selectReducer(
       return {
         ...state,
         card_cvc: payload,
+      };
+    case SelectCardAction.DOWNLOADINPUT:
+      localStorage.setItem("DOWNLOADINPUT", payload);
+      return {
+        ...state,
+        download_input: payload,
       };
     default:
       return state;

@@ -7,7 +7,6 @@ import { SelectState } from "@utils/reducers";
 import road_visa from "@assets/road_visa.jpeg";
 import visa from "@assets/visa.png";
 import visa_cvc from "@assets/visa_cvc.png";
-// import { selectReducer } from "@utils/reducers";
 
 import "./LandingPage.css";
 
@@ -31,7 +30,14 @@ function LandingPage(props: landingPageProps) {
                 <button onClick={() => setmodalShow(true)}>Select</button>
               </div>
               <div className="landingpage_startbtn">
-                <button onClick={() => history.push("/cardPage")}>Start</button>
+                <button
+                  onClick={() => {
+                    history.push("/cardPage");
+                    window.location.reload();
+                  }}
+                >
+                  Start
+                </button>
               </div>
             </div>
           </Col>
