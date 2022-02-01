@@ -107,7 +107,11 @@ function VisaPage(props: VisaPageState) {
         <div className="visapageDiv visapage_back" ref={reference_back}>
           <img
             className="visapage_background"
-            src={props.state.selected ? props.state.selected : road_visa}
+            src={
+              localStorage.getItem("selected")
+                ? localStorage.getItem("selected")
+                : road_visa
+            }
             alt="visapage_background"
           />
           <div className="visapage_blackStrip" />
