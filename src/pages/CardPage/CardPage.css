@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c0c0c0;
+  /* background-color: #c0c0c0; */
   position: relative;
   left: 0;
 }
@@ -13,6 +13,8 @@
   background-color: white;
   padding: 30px;
   padding-top: 200px;
+  margin-top: 250px;
+  background-color: rgb(211, 208, 208);
 }
 
 .cardpage_submitBtn {
