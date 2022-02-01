@@ -60,7 +60,8 @@ function VisaPage(props: VisaPageState) {
     props.setSubmitClick(false);
     props.setButtonInputChecked(false);
   };
-
+  console.log("state_VP", props.state);
+  console.log(localStorage.getItem("selected"));
   return (
     <>
       <div
@@ -70,7 +71,11 @@ function VisaPage(props: VisaPageState) {
         <div className="visapageDiv visapage_front " ref={reference_front}>
           <img
             className="visapage_background"
-            src={props.state.selected ? props.state.selected : road_visa}
+            src={
+              localStorage.getItem("selected")
+                ? localStorage.getItem("selected")
+                : road_visa
+            }
             alt="visapage_background"
           />
           <div>
