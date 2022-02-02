@@ -1,3 +1,6 @@
+.landingpage_row {
+  will-change: transform;
+}
 .landingpage_left {
   background-color: white;
   display: flex;
