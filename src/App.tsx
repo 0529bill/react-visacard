@@ -1,13 +1,12 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { selectReducer } from "@utils/reducers";
 import { SelectState } from "@utils/reducers";
 
-import LandingPage from "@pages/LandingPage/LandingPage";
-import CardPage from "@pages/CardPage/CardPage";
-
 import "./App.css";
+const LandingPage = lazy(() => import("@pages/LandingPage/LandingPage"));
+const CardPage = lazy(() => import("@pages/CardPage/CardPage"));
 
 function App() {
   const initailSelectState: SelectState = {
@@ -33,19 +32,21 @@ function App() {
   let [state, dispatch] = useReducer(selectReducer, initailSelectState);
   return (
     <Container fluid className="App">
-      <Switch>
-        <Route path="/" exact>
-          <LandingPage dispatch={dispatch} state={state} />
-        </Route>
-        <Route path="/cardPage">
-          <CardPage
-            dispatch={dispatch}
-            state={state}
-            cardSide={cardSide}
-            setCardSide={setCardSide}
-          />
-        </Route>
-      </Switch>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path="/" exact>
+            <LandingPage dispatch={dispatch} state={state} />
+          </Route>
+          <Route path="/cardPage">
+            <CardPage
+              dispatch={dispatch}
+              state={state}
+              cardSide={cardSide}
+              setCardSide={setCardSide}
+            />
+          </Route>
+        </Switch>
+      </React.Suspense>
     </Container>
   );
 }

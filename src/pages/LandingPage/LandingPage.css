@@ -232,3 +232,72 @@
   right: 90px;
   width: 45px;
 }
+
+.landing_card_background {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.landing_card_back {
+  transform: rotateY(180deg) translateZ(5px);
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
+  border-radius: 15px;
+}
+
+.landing_card_visaIcon_back {
+  position: absolute;
+  top: 160px;
+  right: 10px;
+  width: 70px;
+}
+
+.landing_card_blackStrip {
+  top: 25px;
+  width: 100%;
+  background-color: black;
+  height: 45px;
+  position: absolute;
+}
+
+.landing_card_whiteStrip {
+  top: 120px;
+  width: 80%;
+  background-color: white;
+  height: 25px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.landing_card_cvcNum {
+  top: 80px;
+  right: 10px;
+  font-size: 20px;
+  height: 25px;
+  position: absolute;
+  width: 45px;
+  text-align: center;
+}
+
+.landing_card_cvcNum_title {
+  color: white;
+  border: 3px solid wheat;
+}
+
+.landing_card_visaCvc_back {
+  position: absolute;
+  top: 158px;
+  right: 90px;
+  width: 45px;
+}
+.landing_cardDiv {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  top: 5%;
+}

@@ -20,7 +20,7 @@ interface VisaPageState {
   setButtonInputChecked: Dispatch<React.SetStateAction<boolean>>;
 }
 
-function VisaPage(props: VisaPageState) {
+const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
   let visaCardNum: Array<JSX.Element | string> = [];
   useEffect(() => {
     if (props.submitClick && props.buttonInputChecked) {
@@ -46,10 +46,6 @@ function VisaPage(props: VisaPageState) {
 
   let download = () => {
     domtoimage.toBlob(reference_front.current).then(function (blob) {
-      // var link = document.createElement("a");
-      // link.download = "my-image-name.jpeg";
-      // link.href = dataUrl;
-      // link.click();
       FileSaver.saveAs(
         blob,
         props.state.download_input
@@ -60,8 +56,6 @@ function VisaPage(props: VisaPageState) {
     props.setSubmitClick(false);
     props.setButtonInputChecked(false);
   };
-  console.log("state_VP", props.state);
-  console.log(localStorage.getItem("selected"));
   return (
     <>
       <div
@@ -135,6 +129,6 @@ function VisaPage(props: VisaPageState) {
       </div>
     </>
   );
-}
+});
 
 export default VisaPage;

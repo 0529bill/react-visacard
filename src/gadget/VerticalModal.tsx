@@ -52,10 +52,6 @@ function VerticalModal(props: ModalProp) {
               );
             })}
           </Row>
-          {/* <Row>
-          <ModalCard cardName="card3" />
-          <ModalCard cardName="card4" />
-        </Row> */}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>

@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, Props } from "react";
 import { Card, Button } from "react-bootstrap";
 import { SelectAction } from "@utils/reducers";
 import { SelectCardAction } from "@utils/enums";
@@ -14,7 +14,7 @@ interface CardProps {
   cardContent: string;
 }
 
-function ModalCard(props: CardProps) {
+let ModalCard: React.FC<CardProps> = React.memo((props) => {
   return (
     <Card
       key={props.cardId}
@@ -42,6 +42,6 @@ function ModalCard(props: CardProps) {
       </Card.Body>
     </Card>
   );
-}
+});
 
 export default ModalCard;

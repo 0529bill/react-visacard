@@ -46,7 +46,11 @@ function LandingPage(props: landingPageProps) {
               <div className="landing_card landing_front">
                 <img
                   className="landing_card_background"
-                  src={props.state.selected ? props.state.selected : road_visa}
+                  src={
+                    localStorage.getItem("selected")
+                      ? localStorage.getItem("selected")
+                      : road_visa
+                  }
                   alt="landing_card_background"
                 />
                 <div>
@@ -77,8 +81,8 @@ function LandingPage(props: landingPageProps) {
                       : "Full Name"}
                   </div>
                 </div>
-                <div className="visapage_expireDate">
-                  <div className="visapage_expireDate_title">Expires</div>
+                <div className="landing_card_expireDate">
+                  <div className="landing_card_expireDate_title">Expires</div>
                   <div>
                     {props.state.expiration_month || props.state.expiration_year
                       ? `${props.state.expiration_month}/${props.state.expiration_year}`
@@ -86,29 +90,33 @@ function LandingPage(props: landingPageProps) {
                   </div>
                 </div>
               </div>
-              <div className="visapageDiv visapage_back">
+              <div className="landing_cardDiv landing_card_back">
                 <img
-                  className="visapage_background"
-                  src={props.state.selected ? props.state.selected : road_visa}
-                  alt="visapage_background"
+                  className="landing_card_background"
+                  src={
+                    localStorage.getItem("selected")
+                      ? localStorage.getItem("selected")
+                      : road_visa
+                  }
+                  alt="landing_card_background"
                 />
-                <div className="visapage_blackStrip" />
-                <div className="visapage_cvcNum">
-                  <div className="visapage_cvcNum_title">
+                <div className="landing_card_blackStrip" />
+                <div className="landing_card_cvcNum">
+                  <div className="landing_card_cvcNum_title">
                     {props.state.card_cvc ? props.state.card_cvc : "CVC"}
                   </div>
                 </div>
-                <div className="visapage_whiteStrip" />
+                <div className="landing_card_whiteStrip" />
                 <div>
                   <img
-                    className="visapage_visaIcon_back"
+                    className="landing_card_visaIcon_back"
                     src={visa}
                     alt="visa"
                   />
                 </div>
                 <div>
                   <img
-                    className="visapage_visaCvc_back"
+                    className="landing_card_visaCvc_back"
                     src={visa_cvc}
                     alt="visa_cvc"
                   />
