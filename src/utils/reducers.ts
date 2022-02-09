@@ -134,5 +134,4 @@ export function selectReducer(
     default:
       return state;
   }
-  return state;
 }
