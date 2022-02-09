@@ -1,12 +1,12 @@
-import React, { Dispatch, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Form, Col, Row, Button, Modal } from "react-bootstrap";
-import { SelectAction } from "@utils/reducers";
-import { SelectCardAction, CardActionValidate } from "@utils/enums";
-import { SelectState } from "@utils/reducers";
-import VisaPage from "@pages/VisaPage/VisaPage";
-import ErrorMessage from "@gadget/ErrorMessage/ErrorMessage";
-import "./CardPage.css";
+import React, { Dispatch, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Form, Col, Row, Button, Modal } from 'react-bootstrap';
+import { SelectAction } from '@utils/reducers';
+import { SelectCardAction, CardActionValidate } from '@utils/enums';
+import { SelectState } from '@utils/reducers';
+import VisaPage from '@pages/VisaPage/VisaPage';
+import ErrorMessage from '@gadget/ErrorMessage/ErrorMessage';
+import './CardPage.css';
 
 interface CardPageState {
   dispatch: Dispatch<SelectAction>;
@@ -16,25 +16,25 @@ interface CardPageState {
 }
 
 const month: Array<string> = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
 ];
 
 function CardPage(props: CardPageState) {
-  let history = useHistory();
-  let [submitClick, setSubmitClick] = useState<boolean>(false);
-  let [modalOpen, setModalOpen] = useState<boolean>(false);
-  let [buttonInputChecked, setButtonInputChecked] = useState<boolean>(false);
+  const history = useHistory();
+  const [submitClick, setSubmitClick] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [buttonInputChecked, setButtonInputChecked] = useState<boolean>(false);
 
   useEffect(() => {
     if (Object.values(props.state.error).every((t) => t == false)) {
@@ -61,7 +61,7 @@ function CardPage(props: CardPageState) {
             onSubmit={(e) => {
               e.preventDefault();
               props.dispatch({
-                type: CardActionValidate.CARDVALIDATE,
+                type: CardActionValidate.CARDVALIDATE
               });
             }}
           >
@@ -75,13 +75,13 @@ function CardPage(props: CardPageState) {
                   (e.target.value = e.target.value.slice(0, 16))
                 }
                 onKeyDown={(e) => [
-                  ["-", "+", "e"].includes(e.key) ? e.preventDefault() : null,
+                  ['-', '+', 'e'].includes(e.key) ? e.preventDefault() : null
                 ]}
                 onChange={(e) => {
                   props.setCardSide(true);
                   props.dispatch({
                     type: SelectCardAction.CARDNUMSELECTED,
-                    payload: e.target.value,
+                    payload: e.target.value
                   });
                 }}
               />
@@ -100,7 +100,7 @@ function CardPage(props: CardPageState) {
                       props.setCardSide(true);
                       props.dispatch({
                         type: SelectCardAction.CARDHOLDERFIRST,
-                        payload: e.target.value,
+                        payload: e.target.value
                       });
                     }}
                   />
@@ -118,7 +118,7 @@ function CardPage(props: CardPageState) {
                       props.setCardSide(true);
                       props.dispatch({
                         type: SelectCardAction.CARDHOLDERSECOND,
-                        payload: e.target.value,
+                        payload: e.target.value
                       });
                     }}
                   />
@@ -140,7 +140,7 @@ function CardPage(props: CardPageState) {
                     props.setCardSide(true);
                     props.dispatch({
                       type: SelectCardAction.EXPIRATIONDATE_MONTH,
-                      payload: e.target.value,
+                      payload: e.target.value
                     });
                   }}
                 >
@@ -163,7 +163,7 @@ function CardPage(props: CardPageState) {
                     props.setCardSide(true);
                     props.dispatch({
                       type: SelectCardAction.EXPIRATIONDATE_YEAR,
-                      payload: e.target.value,
+                      payload: e.target.value
                     });
                   }}
                 >
@@ -171,7 +171,7 @@ function CardPage(props: CardPageState) {
                     Year...
                   </option>
                   {Array.from({ length: 15 }).map((_, index) => (
-                    <option key={index + 2022 + ""}>{2022 + index}</option>
+                    <option key={index + 2022 + ''}>{2022 + index}</option>
                   ))}
                 </Form.Select>
                 <ErrorMessage id="expiration_year" data={props.state.error} />
@@ -187,17 +187,17 @@ function CardPage(props: CardPageState) {
                   autoComplete="off"
                   maxLength={3}
                   onKeyDown={(e) => [
-                    ["-", "+", "e"].includes(e.key) ? e.preventDefault() : null,
+                    ['-', '+', 'e'].includes(e.key) ? e.preventDefault() : null
                   ]}
                   onChange={(e) => {
                     if (e.target.value.length == 1 && props.cardSide == true) {
                       props.setCardSide(false);
-                    } else if (e.target.value == "") {
+                    } else if (e.target.value == '') {
                       props.setCardSide(true);
                     }
                     props.dispatch({
                       type: SelectCardAction.CARDCVCSELECTED,
-                      payload: e.target.value,
+                      payload: e.target.value
                     });
                   }}
                 />
@@ -215,7 +215,7 @@ function CardPage(props: CardPageState) {
           </Form>
           <button
             className="cardpage_backBtn"
-            onClick={() => history.push("../")}
+            onClick={() => history.push('../')}
           >
             back
           </button>
@@ -236,7 +236,7 @@ function CardPage(props: CardPageState) {
                 onChange={(e) =>
                   props.dispatch({
                     type: SelectCardAction.DOWNLOADINPUT,
-                    payload: e.target.value,
+                    payload: e.target.value
                   })
                 }
               ></input>
@@ -248,7 +248,7 @@ function CardPage(props: CardPageState) {
                   setModalOpen(false);
                   setSubmitClick(false);
                   props.dispatch({
-                    type: SelectCardAction.INITIALIZATION,
+                    type: SelectCardAction.INITIALIZATION
                   });
                 }}
               >
@@ -260,11 +260,11 @@ function CardPage(props: CardPageState) {
                   setButtonInputChecked(true);
                   setModalOpen(false);
                   props.dispatch({
-                    type: SelectCardAction.INITIALIZATION,
+                    type: SelectCardAction.INITIALIZATION
                   });
                 }}
               >
-                Download{" "}
+                Download{' '}
               </Button>
             </Modal.Footer>
           </Modal>

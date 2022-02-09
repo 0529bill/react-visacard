@@ -1,21 +1,21 @@
-import React, { useState, useReducer, lazy } from "react";
-import { Route, Switch } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import { selectReducer } from "@utils/reducers";
-import { SelectState } from "@utils/reducers";
+import React, { useState, useReducer, lazy } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+import { selectReducer } from '@utils/reducers';
+import { SelectState } from '@utils/reducers';
 
-import "./App.css";
-const LandingPage = lazy(() => import("@pages/LandingPage/LandingPage"));
-const CardPage = lazy(() => import("@pages/CardPage/CardPage"));
+import './App.css';
+const LandingPage = lazy(() => import('@pages/LandingPage/LandingPage'));
+const CardPage = lazy(() => import('@pages/CardPage/CardPage'));
 
 function App() {
   const initailSelectState: SelectState = {
-    selected: "",
+    selected: '',
     card_num: 0,
-    card_holder_first: "",
-    card_holder_second: "",
-    expiration_year: "YY",
-    expiration_month: "MM",
+    card_holder_first: '',
+    card_holder_second: '',
+    expiration_year: 'YY',
+    expiration_month: 'MM',
     card_cvc: 0,
     error: {
       card_num: null,
@@ -23,13 +23,13 @@ function App() {
       card_holder_second: null,
       card_cvc: null,
       expiration_month: null,
-      expiration_year: null,
+      expiration_year: null
     },
-    download_input: "",
+    download_input: ''
   };
 
-  let [cardSide, setCardSide] = useState<boolean>(true);
-  let [state, dispatch] = useReducer(selectReducer, initailSelectState);
+  const [cardSide, setCardSide] = useState<boolean>(true);
+  const [state, dispatch] = useReducer(selectReducer, initailSelectState);
   return (
     <Container fluid className="App">
       <React.Suspense fallback={<div>Loading...</div>}>

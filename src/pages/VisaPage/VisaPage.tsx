@@ -1,14 +1,13 @@
-import React, { Dispatch, useEffect, useRef } from "react";
-import visa_background from "@assets/visa_background.jpeg";
-import visa from "@assets/visa.png";
-import visa_cvc from "@assets/visa_cvc.png";
-import road_visa from "@assets/road_visa.jpeg";
-import { SelectState } from "@utils/reducers";
+import React, { Dispatch, useEffect, useRef } from 'react';
+import visa from '@assets/visa.png';
+import visa_cvc from '@assets/visa_cvc.png';
+import road_visa from '@assets/road_visa.jpeg';
+import { SelectState } from '@utils/reducers';
 
-import domtoimage from "dom-to-image";
-import FileSaver from "file-saver";
+import domtoimage from 'dom-to-image';
+import FileSaver from 'file-saver';
 
-import "./VisaPage.css";
+import './VisaPage.css';
 
 interface VisaPageState {
   state: SelectState;
@@ -21,7 +20,7 @@ interface VisaPageState {
 }
 
 const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
-  let visaCardNum: Array<JSX.Element | string> = [];
+  const visaCardNum: Array<JSX.Element | string> = [];
   useEffect(() => {
     if (props.submitClick && props.buttonInputChecked) {
       download();
@@ -32,25 +31,25 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
     if (index < props.state.card_num.length) {
       visaCardNum.push(props.state.card_num[index]);
     } else {
-      visaCardNum.push("#");
+      visaCardNum.push('#');
     }
     if (index == 15) {
-      visaCardNum.splice(4, 0, " ");
-      visaCardNum.splice(9, 0, " ");
-      visaCardNum.splice(14, 0, " ");
+      visaCardNum.splice(4, 0, ' ');
+      visaCardNum.splice(9, 0, ' ');
+      visaCardNum.splice(14, 0, ' ');
     }
   });
 
   const reference_front: any = useRef();
   const reference_back: any = useRef();
 
-  let download = () => {
+  const download = () => {
     domtoimage.toBlob(reference_front.current).then(function (blob) {
       FileSaver.saveAs(
         blob,
         props.state.download_input
           ? `${props.state.download_input}_front.png`
-          : "visa_front.png"
+          : 'visa_front.png'
       );
     });
     props.setSubmitClick(false);
@@ -59,15 +58,15 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
   return (
     <>
       <div
-        className={`visapage_container ${props.cardSide ? "" : "flipped"}`}
+        className={`visapage_container ${props.cardSide ? '' : 'flipped'}`}
         onClick={() => props.setCardSide((t) => !t)}
       >
         <div className="visapageDiv visapage_front " ref={reference_front}>
           <img
             className="visapage_background"
             src={
-              localStorage.getItem("selected")
-                ? localStorage.getItem("selected")
+              localStorage.getItem('selected')
+                ? localStorage.getItem('selected')
                 : road_visa
             }
             alt="visapage_background"
@@ -84,9 +83,9 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
             <div className="visapage_cardHolder_text">
               {props.state.card_holder_first || props.state.card_holder_second
                 ? props.state.card_holder_first +
-                  " " +
+                  ' ' +
                   props.state.card_holder_second
-                : "Full Name"}
+                : 'Full Name'}
             </div>
           </div>
           <div className="visapage_expireDate">
@@ -94,7 +93,7 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
             <div>
               {props.state.expiration_month || props.state.expiration_year
                 ? `${props.state.expiration_month}/${props.state.expiration_year}`
-                : "MM/YY"}
+                : 'MM/YY'}
             </div>
           </div>
         </div>
@@ -102,8 +101,8 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
           <img
             className="visapage_background"
             src={
-              localStorage.getItem("selected")
-                ? localStorage.getItem("selected")
+              localStorage.getItem('selected')
+                ? localStorage.getItem('selected')
                 : road_visa
             }
             alt="visapage_background"
@@ -111,7 +110,7 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
           <div className="visapage_blackStrip" />
           <div className="visapage_cvcNum">
             <div className="visapage_cvcNum_title">
-              {props.state.card_cvc ? props.state.card_cvc : "CVC"}
+              {props.state.card_cvc ? props.state.card_cvc : 'CVC'}
             </div>
           </div>
           <div className="visapage_whiteStrip" />

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./ErrorMessage.css";
+import './ErrorMessage.css';
 
 interface ErrorMessageState {
   data: any;
@@ -12,15 +12,15 @@ interface Message {
 }
 
 function ErrorMessage(props: ErrorMessageState) {
-  let { id, data } = props;
+  const { id, data } = props;
 
-  let message: Message = {
-    card_num: "Card Number must be 16-digit number.",
-    card_holder_first: "First name must not be empty.",
-    card_cvc: "CVC must be 3-digit number.",
-    card_holder_second: "Last name must not be empty.",
-    expiration_year: "Year is empty.",
-    expiration_month: "Month is empty.",
+  const message: Message = {
+    card_num: 'Card Number must be 16-digit number.',
+    card_holder_first: 'First name must not be empty.',
+    card_cvc: 'CVC must be 3-digit number.',
+    card_holder_second: 'Last name must not be empty.',
+    expiration_year: 'Year is empty.',
+    expiration_month: 'Month is empty.'
   };
   return (
     <>

@@ -1,7 +1,7 @@
-import React, { Dispatch, Props } from "react";
-import { Card, Button } from "react-bootstrap";
-import { SelectAction } from "@utils/reducers";
-import { SelectCardAction } from "@utils/enums";
+import React, { Dispatch } from 'react';
+import { Card, Button } from 'react-bootstrap';
+import { SelectAction } from '@utils/reducers';
+import { SelectCardAction } from '@utils/enums';
 
 interface CardProps {
   cardName: string;
@@ -14,15 +14,15 @@ interface CardProps {
   cardContent: string;
 }
 
-let ModalCard: React.FC<CardProps> = React.memo((props) => {
+const ModalCard: React.FC<CardProps> = React.memo((props) => {
   return (
     <Card
       key={props.cardId}
-      style={{ width: "18rem", textAlign: "center", margin: "30px" }}
+      style={{ width: '18rem', textAlign: 'center', margin: '30px' }}
     >
       <Card.Img
         src={props.img}
-        style={{ height: "250px", objectFit: "cover" }}
+        style={{ height: '250px', objectFit: 'cover' }}
       />
       <Card.Body>
         <Card.Title>{props.cardName}</Card.Title>
@@ -32,7 +32,7 @@ let ModalCard: React.FC<CardProps> = React.memo((props) => {
           onClick={() => {
             props.onSelectCard({
               type: SelectCardAction.ADD,
-              payload: props.img,
+              payload: props.img
             });
             props.onHide();
           }}

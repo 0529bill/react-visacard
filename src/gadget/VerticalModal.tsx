@@ -1,12 +1,12 @@
-import React, { Dispatch } from "react";
-import { Modal, Button, Row } from "react-bootstrap";
-import ModalCard from "@gadget/ModalCard";
-import visa_background from "@assets/visa_background.jpeg";
-import road_visa from "@assets/road_visa.jpeg";
-import visa_ocean from "@assets/visa_ocean.jpeg";
-import visa_land from "@assets/visa_land.png";
+import React, { Dispatch } from 'react';
+import { Modal, Button, Row } from 'react-bootstrap';
+import ModalCard from '@gadget/ModalCard';
+import visa_background from '@assets/visa_background.jpeg';
+import road_visa from '@assets/road_visa.jpeg';
+import visa_ocean from '@assets/visa_ocean.jpeg';
+import visa_land from '@assets/visa_land.png';
 
-import { SelectAction } from "@utils/reducers";
+import { SelectAction } from '@utils/reducers';
 
 export interface ModalProp {
   show: boolean;
@@ -17,11 +17,11 @@ export interface ModalProp {
 
 function VerticalModal(props: ModalProp) {
   // [cardName, cardId, img, onSelectCard, cardContent]
-  let cardData = [
-    ["Neon star", "card1", visa_background, props.onSelect, "neon background"],
-    ["Road", "card2", road_visa, props.onSelect, "special edition background"],
-    ["Ocean", "card3", visa_ocean, props.onSelect, "ocean background"],
-    ["land", "card4", visa_land, props.onSelect, "land background"],
+  const cardData = [
+    ['Neon star', 'card1', visa_background, props.onSelect, 'neon background'],
+    ['Road', 'card2', road_visa, props.onSelect, 'special edition background'],
+    ['Ocean', 'card3', visa_ocean, props.onSelect, 'ocean background'],
+    ['land', 'card4', visa_land, props.onSelect, 'land background']
   ];
 
   return (
@@ -38,7 +38,7 @@ function VerticalModal(props: ModalProp) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Row style={{ justifyContent: "center" }}>
+          <Row style={{ justifyContent: 'center' }}>
             {cardData.map((t) => {
               return (
                 <ModalCard

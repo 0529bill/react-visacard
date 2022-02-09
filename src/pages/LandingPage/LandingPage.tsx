@@ -1,14 +1,14 @@
-import React, { Dispatch, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Col, Row, Container } from "react-bootstrap";
-import VerticalModal from "@gadget/VerticalModal";
-import { SelectAction } from "@utils/reducers";
-import { SelectState } from "@utils/reducers";
-import road_visa from "@assets/road_visa.jpeg";
-import visa from "@assets/visa.png";
-import visa_cvc from "@assets/visa_cvc.png";
+import React, { Dispatch, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Col, Row, Container } from 'react-bootstrap';
+import VerticalModal from '@gadget/VerticalModal';
+import { SelectAction } from '@utils/reducers';
+import { SelectState } from '@utils/reducers';
+import road_visa from '@assets/road_visa.jpeg';
+import visa from '@assets/visa.png';
+import visa_cvc from '@assets/visa_cvc.png';
 
-import "./LandingPage.css";
+import './LandingPage.css';
 
 interface landingPageProps {
   dispatch: Dispatch<SelectAction>;
@@ -16,12 +16,12 @@ interface landingPageProps {
 }
 
 function LandingPage(props: landingPageProps) {
-  let { dispatch } = props;
-  let history = useHistory();
-  let [modalShow, setmodalShow] = useState<boolean>(false);
+  const { dispatch } = props;
+  const history = useHistory();
+  const [modalShow, setmodalShow] = useState<boolean>(false);
   return (
     <>
-      <Container style={{ height: "100vh" }}>
+      <Container style={{ height: '100vh' }}>
         <Row className="landingpage_row">
           <Col className="landingpage_left">
             <div className="landingpage_leftConatiner">
@@ -32,7 +32,7 @@ function LandingPage(props: landingPageProps) {
               <div className="landingpage_startbtn">
                 <button
                   onClick={() => {
-                    history.push("/cardPage");
+                    history.push('/cardPage');
                     window.location.reload();
                   }}
                 >
@@ -41,14 +41,14 @@ function LandingPage(props: landingPageProps) {
               </div>
             </div>
           </Col>
-          <Col style={{ height: "100vh" }}>
+          <Col style={{ height: '100vh' }}>
             <div className="landing_card_container flipped">
               <div className="landing_card landing_front">
                 <img
                   className="landing_card_background"
                   src={
-                    localStorage.getItem("selected")
-                      ? localStorage.getItem("selected")
+                    localStorage.getItem('selected')
+                      ? localStorage.getItem('selected')
                       : road_visa
                   }
                   alt="landing_card_background"
@@ -76,9 +76,9 @@ function LandingPage(props: landingPageProps) {
                     {props.state.card_holder_first ||
                     props.state.card_holder_second
                       ? props.state.card_holder_first +
-                        " " +
+                        ' ' +
                         props.state.card_holder_second
-                      : "Full Name"}
+                      : 'Full Name'}
                   </div>
                 </div>
                 <div className="landing_card_expireDate">
@@ -86,7 +86,7 @@ function LandingPage(props: landingPageProps) {
                   <div>
                     {props.state.expiration_month || props.state.expiration_year
                       ? `${props.state.expiration_month}/${props.state.expiration_year}`
-                      : "MM/YY"}
+                      : 'MM/YY'}
                   </div>
                 </div>
               </div>
@@ -94,8 +94,8 @@ function LandingPage(props: landingPageProps) {
                 <img
                   className="landing_card_background"
                   src={
-                    localStorage.getItem("selected")
-                      ? localStorage.getItem("selected")
+                    localStorage.getItem('selected')
+                      ? localStorage.getItem('selected')
                       : road_visa
                   }
                   alt="landing_card_background"
@@ -103,7 +103,7 @@ function LandingPage(props: landingPageProps) {
                 <div className="landing_card_blackStrip" />
                 <div className="landing_card_cvcNum">
                   <div className="landing_card_cvcNum_title">
-                    {props.state.card_cvc ? props.state.card_cvc : "CVC"}
+                    {props.state.card_cvc ? props.state.card_cvc : 'CVC'}
                   </div>
                 </div>
                 <div className="landing_card_whiteStrip" />

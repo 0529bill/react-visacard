@@ -1,4 +1,4 @@
-import { SelectCardAction, CardActionValidate } from "@utils/enums";
+import { SelectCardAction, CardActionValidate } from '@utils/enums';
 
 export interface SelectAction {
   type: string;
@@ -12,7 +12,7 @@ export interface SelectState {
   card_holder_second: string;
   expiration_year: string;
   expiration_month: string;
-  card_cvc: Number | null;
+  card_cvc: number | null;
   error: any;
   download_input: string;
 }
@@ -21,42 +21,42 @@ export function selectReducer(
   state: SelectState,
   action: SelectAction
 ): SelectState {
-  let { type, payload } = action;
+  const { type, payload } = action;
   switch (type) {
     case CardActionValidate.CARDVALIDATE:
       if (state.card_num.length !== 16) {
-        state.error["card_num"] = true;
+        state.error['card_num'] = true;
       } else if (state.card_num.length === 16) {
-        state.error["card_num"] = false;
+        state.error['card_num'] = false;
       }
       if (state.card_holder_first.length == 0) {
-        state.error["card_holder_first"] = true;
+        state.error['card_holder_first'] = true;
       } else if (state.card_holder_first.length !== 0) {
-        state.error["card_holder_first"] = false;
+        state.error['card_holder_first'] = false;
       }
 
       if (state.card_holder_second.length == 0) {
-        state.error["card_holder_second"] = true;
+        state.error['card_holder_second'] = true;
       } else if (state.card_holder_second.length !== 0) {
-        state.error["card_holder_second"] = false;
+        state.error['card_holder_second'] = false;
       }
 
-      if (state.expiration_month == "MM") {
-        state.error["expiration_month"] = true;
+      if (state.expiration_month == 'MM') {
+        state.error['expiration_month'] = true;
       } else if (state.expiration_month.length !== 0) {
-        state.error["expiration_month"] = false;
+        state.error['expiration_month'] = false;
       }
 
-      if (state.expiration_year == "YY") {
-        state.error["expiration_year"] = true;
+      if (state.expiration_year == 'YY') {
+        state.error['expiration_year'] = true;
       } else if (state.expiration_year.length !== 0) {
-        state.error["expiration_year"] = false;
+        state.error['expiration_year'] = false;
       }
 
       if (state.card_cvc == 0) {
-        state.error["card_cvc"] = true;
+        state.error['card_cvc'] = true;
       } else if (state.expiration_year.length !== 0) {
-        state.error["card_cvc"] = false;
+        state.error['card_cvc'] = false;
       }
 
       //   [state.card_holder_first, state.card_holder_second].forEach((t) => {
@@ -74,62 +74,62 @@ export function selectReducer(
 
       return { ...state };
     case SelectCardAction.INITIALIZATION:
-      state.error["card_cvc"] = null;
-      state.error["card_holder_first"] = null;
-      state.error["card_holder_second"] = null;
-      state.error["card_num"] = null;
-      state.error["expiration_month"] = null;
-      state.error["expiration_year"] = null;
+      state.error['card_cvc'] = null;
+      state.error['card_holder_first'] = null;
+      state.error['card_holder_second'] = null;
+      state.error['card_num'] = null;
+      state.error['expiration_month'] = null;
+      state.error['expiration_year'] = null;
       return {
-        ...state,
+        ...state
       };
     case SelectCardAction.ADD:
-      localStorage.setItem("selected", payload);
+      localStorage.setItem('selected', payload);
       return {
         ...state,
-        selected: payload,
+        selected: payload
       };
     case SelectCardAction.CARDNUMSELECTED:
-      localStorage.setItem("CARDNUMSELECTED", payload);
+      localStorage.setItem('CARDNUMSELECTED', payload);
       return {
         ...state,
-        card_num: payload,
+        card_num: payload
       };
     case SelectCardAction.CARDHOLDERFIRST:
-      localStorage.setItem("CARDHOLDERFIRST", payload);
+      localStorage.setItem('CARDHOLDERFIRST', payload);
       return {
         ...state,
-        card_holder_first: payload,
+        card_holder_first: payload
       };
     case SelectCardAction.CARDHOLDERSECOND:
-      localStorage.setItem("CARDHOLDERSECOND", payload);
+      localStorage.setItem('CARDHOLDERSECOND', payload);
       return {
         ...state,
-        card_holder_second: payload,
+        card_holder_second: payload
       };
     case SelectCardAction.EXPIRATIONDATE_YEAR:
-      localStorage.setItem("EXPIRATIONDATE_YEAR", payload);
+      localStorage.setItem('EXPIRATIONDATE_YEAR', payload);
       return {
         ...state,
-        expiration_year: payload,
+        expiration_year: payload
       };
     case SelectCardAction.EXPIRATIONDATE_MONTH:
-      localStorage.setItem("EXPIRATIONDATE_MONTH", payload);
+      localStorage.setItem('EXPIRATIONDATE_MONTH', payload);
       return {
         ...state,
-        expiration_month: payload,
+        expiration_month: payload
       };
     case SelectCardAction.CARDCVCSELECTED:
-      localStorage.setItem("CARDCVCSELECTED", payload);
+      localStorage.setItem('CARDCVCSELECTED', payload);
       return {
         ...state,
-        card_cvc: payload,
+        card_cvc: payload
       };
     case SelectCardAction.DOWNLOADINPUT:
-      localStorage.setItem("DOWNLOADINPUT", payload);
+      localStorage.setItem('DOWNLOADINPUT', payload);
       return {
         ...state,
-        download_input: payload,
+        download_input: payload
       };
     default:
       return state;
