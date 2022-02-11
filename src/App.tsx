@@ -11,7 +11,7 @@ const CardPage = lazy(() => import('@pages/CardPage/CardPage'));
 function App() {
   const initailSelectState: SelectState = {
     selected: '',
-    card_num: 0,
+    card_num: '',
     card_holder_first: '',
     card_holder_second: '',
     expiration_year: 'YY',

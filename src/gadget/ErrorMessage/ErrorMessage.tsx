@@ -3,7 +3,14 @@ import React from 'react';
 import './ErrorMessage.css';
 
 interface ErrorMessageState {
-  data: any;
+  data: {
+    card_cvc: null | boolean;
+    card_holder_first: null | boolean;
+    card_holder_second: null | boolean;
+    card_num: null | boolean;
+    expiration_month: null | boolean;
+    expiration_year: null | boolean;
+  };
   id: string;
 }
 
@@ -13,7 +20,6 @@ interface Message {
 
 function ErrorMessage(props: ErrorMessageState) {
   const { id, data } = props;
-
   const message: Message = {
     card_num: 'Card Number must be 16-digit number.',
     card_holder_first: 'First name must not be empty.',
@@ -25,7 +31,7 @@ function ErrorMessage(props: ErrorMessageState) {
   return (
     <>
       <div className="ErrorMessageContainer">
-        {data[id] ? message[id] : null}
+        {data[id as keyof typeof data] ? message[id] : null}
       </div>
     </>
   );

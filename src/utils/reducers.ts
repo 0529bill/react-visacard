@@ -7,7 +7,7 @@ export interface SelectAction {
 
 export interface SelectState {
   selected: string;
-  card_num: any;
+  card_num: string;
   card_holder_first: string;
   card_holder_second: string;
   expiration_year: string;
@@ -21,6 +21,8 @@ export function selectReducer(
   state: SelectState,
   action: SelectAction
 ): SelectState {
+  console.log('state', state);
+  console.log('action', action);
   const { type, payload } = action;
   switch (type) {
     case CardActionValidate.CARDVALIDATE:

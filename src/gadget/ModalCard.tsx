@@ -6,11 +6,10 @@ import { SelectCardAction } from '@utils/enums';
 interface CardProps {
   cardName: string;
   cardId: string;
-  //   onSelectCard: Dispatch<React.SetStateAction<string | null>>;
   onSelectCard: Dispatch<SelectAction>;
   setSelectTarget?: () => { value: string };
   onHide: () => void;
-  img: any;
+  img: string;
   cardContent: string;
 }
 
