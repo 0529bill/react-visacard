@@ -41,7 +41,7 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
   });
 
   const reference_front: any = useRef();
-  const reference_back: any = useRef();
+  // const reference_back = useRef<HTMLDivElement>(null);
 
   const download = () => {
     domtoimage.toBlob(reference_front.current).then(function (blob) {
@@ -97,7 +97,10 @@ const VisaPage: React.FC<VisaPageState> = React.memo((props) => {
             </div>
           </div>
         </div>
-        <div className="visapageDiv visapage_back" ref={reference_back}>
+        <div
+          className="visapageDiv visapage_back"
+          //  ref={reference_back}
+        >
           <img
             className="visapage_background"
             src={

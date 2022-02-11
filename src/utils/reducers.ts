@@ -13,7 +13,14 @@ export interface SelectState {
   expiration_year: string;
   expiration_month: string;
   card_cvc: number | null;
-  error: any;
+  error: {
+    card_cvc: null | boolean;
+    card_holder_first: null | boolean;
+    card_holder_second: null | boolean;
+    card_num: null | boolean;
+    expiration_month: null | boolean;
+    expiration_year: null | boolean;
+  };
   download_input: string;
 }
 
@@ -21,9 +28,9 @@ export function selectReducer(
   state: SelectState,
   action: SelectAction
 ): SelectState {
-  console.log('state', state);
   console.log('action', action);
   const { type, payload } = action;
+  console.log('payload', payload);
   switch (type) {
     case CardActionValidate.CARDVALIDATE:
       if (state.card_num.length !== 16) {
